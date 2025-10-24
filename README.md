@@ -81,8 +81,10 @@ The commands are as under:
 
 1.Open Terminal and navigate to the folder containing network_monitor.cpp:
     cd ~/Downloads
+    
 2.Check your network interfaces to know which one to monitor:
    ip a
+   
 3.Compile the source file:
    g++ network_monitor.cpp -o network_monitor -std=c++11
 
