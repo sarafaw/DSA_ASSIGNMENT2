@@ -71,14 +71,40 @@ This structure allows continuous and ordered packet processing.
 -Failed packets are moved to a backup queue.
 -Retries are logged, ensuring fault-tolerant replay operation.
 
-🖥️ How to Compile and Run
+6.How to Compile and Run
 # Step 1: Compile the program
 # Step 2: Run the program with root privileges
+
+You need to have a Ubuntu Linux based system to run this.
+Then you run this terminal.
+The commands are as under:
+
+1.Open Terminal and navigate to the folder containing network_monitor.cpp:
+    cd ~/Downloads
+2.Check your network interfaces to know which one to monitor:
+   ip a
+3.Compile the source file:
+   g++ network_monitor.cpp -o network_monitor -std=c++11
+
+# If you get any missing header errors, install the required tools:
+-sudo apt update
+-sudo apt install build-essential linux-headers-$(uname -r)
+
+4.Run the program as root (required for raw socket access):
+   sudo ./network_monitor <interface> <target_IP> <gateway_IP>
+
+
+Example:
+sudo ./network_monitor enp0s3 192.168.1.11 8.8.8.8
+
+-enp0s3 → your active network interface
+-192.168.1.11 → target IP for filtering
+-8.8.8.8 → gateway or DNS IP
 
 The program will continuously capture packets for at least 1 minute.
 To stop it, press Ctrl + C.
 
- Demonstration:
+ 7.Demonstration:
 
 -Start continuous capture for 1 minute.
 -Dissect packets using the stack-based parser.
@@ -86,14 +112,13 @@ To stop it, press Ctrl + C.
 -Replay filtered packets with calculated delay.
 -Observe error handling and backup retries.
 
-📂 Repository Structure
+Repository Structure
 📦 NetworkMonitor/
  ┣ 📄 network_monitor.cpp   # Main source file
  ┣ 📄 README.md             # Instructions and project overview
  ┗ 📄 Report.pdf            # Well-documented report for submission
 
-👨‍💻 Author
-
+ # Author:
 Name: Sara Fawad
 Cms id: 509615
 Course: CS250 — Data Structures & Algorithms
